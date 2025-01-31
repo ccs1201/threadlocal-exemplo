@@ -32,7 +32,7 @@ public class AppController {
         para mostrar que o mesmo é alterado para cada chamada, e não deve
         afetar chamadas para outros endpoints. Pois o ApplicationId é setado
         no filtro que é chamado a cada requisição que chega, e cada thread tem o
-        seu próprio ApplicationId. Tradicionalmente em JAVA uma request para uma Thread.
+        seu próprio ApplicationId. Tradicionalmente em JAVA uma Thread por request.
          */
         ApplicationIdHolder.set(ApplicationIdHolder.get() + " - " + UUID.randomUUID());
         return service.getApplicationId();
