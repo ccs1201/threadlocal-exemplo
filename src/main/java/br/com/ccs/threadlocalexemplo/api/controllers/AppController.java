@@ -26,7 +26,7 @@ public class AppController {
     @RequestMapping
     @ResponseStatus(OK)
     public String getApplicationId() {
-        loger("síncrona");
+        logger("síncrona");
         /*
         Aqui estou alterando o applicationID concatenando com um UUID
         para mostrar que o mesmo é alterado para cada chamada, e não deve
@@ -41,7 +41,7 @@ public class AppController {
     @RequestMapping("/async_sem_appid")
     @ResponseStatus(BAD_REQUEST)
     public CompletableFuture<String> asyncSemAppId() {
-        loger("assíncrona - async_sem_appid");
+        logger("assíncrona - async_sem_appid");
         log.info("Valor do ApplicationId antes de iniciar a nova Thread: " + ApplicationIdHolder.get());
         /*
         Aqui não copiamos o ApplicationId do Thread atual para setar na nova Thread que será criada
@@ -59,7 +59,7 @@ public class AppController {
     @RequestMapping("/async_com_appid")
     @ResponseStatus(OK)
     public CompletableFuture<String> asyncComAppId() {
-        loger("assíncrona - async_com_appid");
+        logger("assíncrona - async_com_appid");
 
         /*
         Aqui nos copiamos o ApplicationId do Thread atual para setar na nova Thread que será criada
@@ -74,7 +74,7 @@ public class AppController {
                 .thenApply(s -> Objects.requireNonNull(s, "ApplicationId não deveria ser nulo."));
     }
 
-    private static void loger(String tipo) {
+    private static void logger(String tipo) {
         log.info("Iniciando chamada {}", tipo);
     }
 }
